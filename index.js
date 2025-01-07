@@ -40,10 +40,16 @@ async function run() {
         res.send(result)
     })
 
-    // Carts collection
+    // Carts collection send
     app.post('/carts', async(req, res) =>{
       const cartItem = req.body;
       const result = await cartCollection.insertOne(cartItem);
+      res.send(result);
+    })
+
+    // cart collection read
+    app.get('/carts', async(req,res) => {
+      const result = await cartCollection.find().toArray();
       res.send(result);
     })
     // Send a ping to confirm a successful connection
